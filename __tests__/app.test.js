@@ -31,40 +31,71 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns hot_sauce', async() => {
+    test('returns hot_sauce', async() => {
 
-    const expectation = [
+      const expectation = [
+        {
+          id: 1,
+          name: 'LTD Edition Scribe Honey Habanero',
+          scoville_scale: 1000,
+          on_sale: false,
+          type: 'mustard',
+          owner_id: 1
+        },
+        {
+          id: 2,
+          name: 'Sauce Lord Garlic',
+          scoville_scale: 4000,
+          on_sale: true,
+          type: 'vinegar',
+          owner_id: 1 
+        },
+        {
+          id: 3,
+          name: 'Pineapple Habanero',
+          scoville_scale: 10,
+          on_sale: false,
+          type: 'red sauce',
+          owner_id: 1
+        },
+        {
+          id: 4,
+          name: 'Scotch Bonnet Heirloom Tomato',
+          scoville_scale: 10,
+          on_sale: true,
+          type: 'vinegar',
+          owner_id: 1
+        }
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/hot-sauce')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns one hot sauce', async() => {
+
+      const expectation = 
       {
+        id: 1,
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
-        type: 'mustard'
-      },
-      {
-        name: 'Sauce Lord Garlic',
-        scoville_scale: 4000,
-        on_sale: true,
-        type: 'vinegar' 
-      },
-      {
-        name: 'Pineapple Habanero',
-        scoville_scale: 10,
-        on_sale: false,
-        type: 'red sauce'
-      },
-      {
-        name: 'Scotch Bonnet Heirloom Tomato',
-        scoville_scale: 10,
-        on_sale: true,
-        type: 'vinegar'
-      }
-    ];
+        type: 'mustard',
+        owner_id: 1
+      };
 
-    const data = await fakeRequest(app)
-      .get('/hot_sauce')
-      .expect('Content-Type', /json/)
-      .expect(200);
+      const data = await fakeRequest(app)
+        .get('/hot-sauce/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
 
-    expect(data.body).toEqual(expectation);
+      expect(data.body).toEqual(expectation);
+    });
+
   });
+
 });
