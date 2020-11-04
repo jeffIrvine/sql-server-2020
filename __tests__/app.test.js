@@ -96,10 +96,10 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test.only('adds a hot sauce to the DB then returns it', async() => {
+    test('adds a hot sauce to the DB then returns it', async() => {
       const expectation =       
       {
-        id: 1,
+        id: 5,
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
@@ -115,6 +115,7 @@ describe('app routes', () => {
           type: 'mustard',
           owner_id: 1
         })
+
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -124,7 +125,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(data.body).toEqual(expectation);
-      expect(allHotSauce.body.length).toEqual(4);
+      expect(allHotSauce.body.length).toEqual(5);
     });
   });
 });
