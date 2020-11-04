@@ -127,5 +127,40 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
       expect(allHotSauce.body.length).toEqual(5);
     });
+
+    
+    test('updates single hot sauce in the DB', async() => {
+      const expectation =
+      {
+        id: 2,
+        name: 'Sauce Lord Garlic',
+        scoville_scale: 4000,
+        on_sale: true,
+        type: 'vinegar', 
+        owner_id: 1
+      };
+
+      const data = await fakeRequest(app)
+        .put('/hot-sauce/2')
+        .send({
+          name: 'Sauce Lord Garlic',
+          scoville_scale: 4000,
+          on_sale: true,
+          type: 'vinegar',
+          owner_id: 1
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allHotSauce = await fakeRequest(app)
+        .get('/hot-sauce')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(allHotSauce.body.length).toEqual(4);
+    });
+
+
   });
 });
