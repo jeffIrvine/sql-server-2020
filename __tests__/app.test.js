@@ -39,7 +39,7 @@ describe('app routes', () => {
           name: 'LTD Edition Scribe Honey Habanero',
           scoville_scale: 1000,
           on_sale: false,
-          type: 'mustard',
+          type_id: 1,
           owner_id: 1
         },
         {
@@ -47,7 +47,7 @@ describe('app routes', () => {
           name: 'Sauce Lord Garlic',
           scoville_scale: 4000,
           on_sale: true,
-          type: 'vinegar',
+          type_id: 2,
           owner_id: 1 
         },
         {
@@ -55,7 +55,7 @@ describe('app routes', () => {
           name: 'Pineapple Habanero',
           scoville_scale: 10,
           on_sale: false,
-          type: 'red sauce',
+          type_id: 3,
           owner_id: 1
         },
         {
@@ -63,7 +63,7 @@ describe('app routes', () => {
           name: 'Scotch Bonnet Heirloom Tomato',
           scoville_scale: 10,
           on_sale: true,
-          type: 'vinegar',
+          type_id: 2,
           owner_id: 1
         }
       ];
@@ -84,7 +84,7 @@ describe('app routes', () => {
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
-        type: 'mustard',
+        type_id: 1,
         owner_id: 1
       };
 
@@ -103,7 +103,7 @@ describe('app routes', () => {
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
-        type: 'mustard',
+        type_id: 1,
         owner_id: 1
       };
       const data = await fakeRequest(app)
@@ -112,7 +112,7 @@ describe('app routes', () => {
           name: 'LTD Edition Scribe Honey Habanero',
           scoville_scale: 1000,
           on_sale: false,
-          type: 'mustard',
+          type_id: 1,
           owner_id: 1
         })
 
@@ -136,7 +136,7 @@ describe('app routes', () => {
         name: 'Sauce Lord Garlic',
         scoville_scale: 4000,
         on_sale: true,
-        type: 'vinegar', 
+        type_id: 2, 
         owner_id: 1
       };
 
@@ -146,7 +146,7 @@ describe('app routes', () => {
           name: 'Sauce Lord Garlic',
           scoville_scale: 4000,
           on_sale: true,
-          type: 'vinegar',
+          type_id: 2,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -168,7 +168,7 @@ describe('app routes', () => {
         name: 'Pineapple Habanero',
         scoville_scale: 10,
         on_sale: false,
-        type: 'red sauce',
+        type_id: 3,
         owner_id: 1
       };
 
