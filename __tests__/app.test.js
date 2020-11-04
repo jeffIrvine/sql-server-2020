@@ -129,7 +129,7 @@ describe('app routes', () => {
     });
 
 
-    test.only('updates single hot sauce in the DB', async() => {
+    test('updates single hot sauce in the DB', async() => {
       const expectation =
       {
         id: 2,
@@ -143,9 +143,9 @@ describe('app routes', () => {
       const data = await fakeRequest(app)
         .put('/hot-sauce/2')
         .send({
-          name: 'Sauce Lord ',
-          scoville_scale: 400,
-          on_sale: false,
+          name: 'Sauce Lord Garlic',
+          scoville_scale: 4000,
+          on_sale: true,
           type: 'vinegar',
           owner_id: 1
         })
@@ -158,7 +158,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(data.body).toEqual(expectation);
-      expect(allHotSauce.body.length).toEqual(4);
+      expect(allHotSauce.body.length).toEqual(5);
     });
 
     test('takes one hot sauce out of the DB returning the rest', async() => {
@@ -172,7 +172,7 @@ describe('app routes', () => {
         owner_id: 1
       };
 
-      const deletedData = await fakeRequest(app)
+      const deletedSauce = await fakeRequest(app)
         .delete('/hot-sauce/3')
         .expect('Content-Type', /json/)
         .expect(200);
@@ -182,8 +182,8 @@ describe('app routes', () => {
         .expect('Content-Type', /json/)
         .expect(200);
 
-      expect(deletedData.body).toEqual(expectation);
-      expect(allHotSauce.body.length).toEqual(3);
+      expect(deletedSauce.body).toEqual(expectation);
+      expect(allHotSauce.body.length).toEqual(4);
     });
 
   });
