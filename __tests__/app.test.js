@@ -31,7 +31,7 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test.only('returns hot_sauce', async() => {
+    test('returns hot_sauce', async() => {
 
       const expectation = [
         {
@@ -82,15 +82,15 @@ describe('app routes', () => {
 
       const expectation = [
         {
-      
+          id: 1,
           type: 'mustard'
         },
         {
-      
-          type: 'vinegar' 
+          id: 2,
+          type: 'vinegar'
         },
         {
-      
+          id: 3,
           type: 'red sauce'
         },
       ];
@@ -111,7 +111,7 @@ describe('app routes', () => {
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
-        type_id: 1,
+        type: 'mustard',
         owner_id: 1
       };
 
