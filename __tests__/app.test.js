@@ -31,40 +31,40 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns hot_sauce', async() => {
+    test.only('returns hot_sauce', async() => {
 
       const expectation = [
         {
-          id: 1,
-          name: 'LTD Edition Scribe Honey Habanero',
-          scoville_scale: 1000,
-          on_sale: false,
-          type_id: 1,
-          owner_id: 1
+          'id': 1,
+          'name': 'LTD Edition Scribe Honey Habanero',
+          'scoville_scale': 1000,
+          'on_sale': false,
+          'type': 'mustard',
+          'owner_id': 1
         },
         {
-          id: 2,
-          name: 'Sauce Lord Garlic',
-          scoville_scale: 4000,
-          on_sale: true,
-          type_id: 2,
-          owner_id: 1 
+          'id': 2,
+          'name': 'Sauce Lord Garlic',
+          'scoville_scale': 4000,
+          'on_sale': true,
+          'type': 'vinegar',
+          'owner_id': 1
         },
         {
-          id: 3,
-          name: 'Pineapple Habanero',
-          scoville_scale: 10,
-          on_sale: false,
-          type_id: 3,
-          owner_id: 1
+          'id': 3,
+          'name': 'Pineapple Habanero',
+          'scoville_scale': 10,
+          'on_sale': false,
+          'type': 'red sauce',
+          'owner_id': 1
         },
         {
-          id: 4,
-          name: 'Scotch Bonnet Heirloom Tomato',
-          scoville_scale: 10,
-          on_sale: true,
-          type_id: 2,
-          owner_id: 1
+          'id': 4,
+          'name': 'Scotch Bonnet Heirloom Tomato',
+          'scoville_scale': 10,
+          'on_sale': true,
+          'type': 'vinegar',
+          'owner_id': 1
         }
       ];
 
