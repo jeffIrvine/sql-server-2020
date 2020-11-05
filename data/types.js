@@ -11,8 +11,4 @@ module.exports = [
 
     type: 'red sauce'
   },
-  {
-
-    type: 'vinegar'
-  }
 ];

@@ -76,6 +76,33 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+
+
+    test('returns types of hot sauce', async() => {
+
+      const expectation = [
+        {
+      
+          type: 'mustard'
+        },
+        {
+      
+          type: 'vinegar' 
+        },
+        {
+      
+          type: 'red sauce'
+        },
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/types')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
     test('returns one hot sauce', async() => {
 
       const expectation = 
