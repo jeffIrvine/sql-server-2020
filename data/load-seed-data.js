@@ -1,6 +1,7 @@
 const client = require('../lib/client');
 // import our seed data:
 const hot_sauce = require('./hot-sauce.js');
+const types = require('./types.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
@@ -21,16 +22,27 @@ async function run() {
         [user.email, user.hash]);
       })
     );
+
+    await Promise.all(
+      types.map(type => {
+        return client.query(`
+                      INSERT INTO types (type)
+                      VALUES ($1)
+                      RETURNING *;
+                  `,
+        [type.type]);
+      })
+    );
       
     const user = users[0].rows[0];
 
     await Promise.all(
       hot_sauce.map(hot_sauce => {
         return client.query(`
-                    INSERT INTO hot_sauce (name, scoville_scale, on_sale, type, owner_id)
+                    INSERT INTO hot_sauce (name, scoville_scale, on_sale, type_id, owner_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-        [hot_sauce.name, hot_sauce.scoville_scale, hot_sauce.on_sale, hot_sauce.type, user.id]);
+        [hot_sauce.name, hot_sauce.scoville_scale, hot_sauce.on_sale, hot_sauce.type_id, user.id]);
       })
     );
     

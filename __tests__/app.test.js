@@ -35,41 +35,68 @@ describe('app routes', () => {
 
       const expectation = [
         {
-          id: 1,
-          name: 'LTD Edition Scribe Honey Habanero',
-          scoville_scale: 1000,
-          on_sale: false,
-          type: 'mustard',
-          owner_id: 1
+          'id': 1,
+          'name': 'LTD Edition Scribe Honey Habanero',
+          'scoville_scale': 1000,
+          'on_sale': false,
+          'type': 'mustard',
+          'owner_id': 1
         },
         {
-          id: 2,
-          name: 'Sauce Lord Garlic',
-          scoville_scale: 4000,
-          on_sale: true,
-          type: 'vinegar',
-          owner_id: 1 
+          'id': 2,
+          'name': 'Sauce Lord Garlic',
+          'scoville_scale': 4000,
+          'on_sale': true,
+          'type': 'vinegar',
+          'owner_id': 1
         },
         {
-          id: 3,
-          name: 'Pineapple Habanero',
-          scoville_scale: 10,
-          on_sale: false,
-          type: 'red sauce',
-          owner_id: 1
+          'id': 3,
+          'name': 'Pineapple Habanero',
+          'scoville_scale': 10,
+          'on_sale': false,
+          'type': 'red sauce',
+          'owner_id': 1
         },
         {
-          id: 4,
-          name: 'Scotch Bonnet Heirloom Tomato',
-          scoville_scale: 10,
-          on_sale: true,
-          type: 'vinegar',
-          owner_id: 1
+          'id': 4,
+          'name': 'Scotch Bonnet Heirloom Tomato',
+          'scoville_scale': 10,
+          'on_sale': true,
+          'type': 'vinegar',
+          'owner_id': 1
         }
       ];
 
       const data = await fakeRequest(app)
         .get('/hot-sauce')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+
+
+    test('returns types of hot sauce', async() => {
+
+      const expectation = [
+        {
+          id: 1,
+          type: 'mustard'
+        },
+        {
+          id: 2,
+          type: 'vinegar'
+        },
+        {
+          id: 3,
+          type: 'red sauce'
+        },
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/types')
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -103,7 +130,7 @@ describe('app routes', () => {
         name: 'LTD Edition Scribe Honey Habanero',
         scoville_scale: 1000,
         on_sale: false,
-        type: 'mustard',
+        type_id: 1,
         owner_id: 1
       };
       const data = await fakeRequest(app)
@@ -112,7 +139,7 @@ describe('app routes', () => {
           name: 'LTD Edition Scribe Honey Habanero',
           scoville_scale: 1000,
           on_sale: false,
-          type: 'mustard',
+          type_id: 1,
           owner_id: 1
         })
 
@@ -136,7 +163,7 @@ describe('app routes', () => {
         name: 'Sauce Lord Garlic',
         scoville_scale: 4000,
         on_sale: true,
-        type: 'vinegar', 
+        type_id: 2, 
         owner_id: 1
       };
 
@@ -146,7 +173,7 @@ describe('app routes', () => {
           name: 'Sauce Lord Garlic',
           scoville_scale: 4000,
           on_sale: true,
-          type: 'vinegar',
+          type_id: 2,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -168,7 +195,7 @@ describe('app routes', () => {
         name: 'Pineapple Habanero',
         scoville_scale: 10,
         on_sale: false,
-        type: 'red sauce',
+        type_id: 3,
         owner_id: 1
       };
 
